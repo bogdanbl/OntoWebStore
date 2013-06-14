@@ -8,6 +8,13 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
+    
+    <script type="text/javascript">
+        $("#LoadOntology").click(function(parameters) {
+            $.post("@Url.Action("Load","Manage")", { uri: "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCsQFjAA&url=http%3A%2F%2Fwww.w3.org%2FTR%2Fowl-guide%2Fwine.rdf&ei=rym6UYr-NIWo4AS7v4HQDQ&usg=AFQjCNGZMPIkQLFYvvEogBomZbNbmA3bqQ&bvm=bv.47883778,d.bGE" })
+        })
+    </script>
+
     <body>
         <header>
             <div class="content-wrapper">

@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
@@ -20,6 +21,17 @@
 }
 <h3>We suggest the following:</h3>
 <ol class="round">
+
+    @using (Html.BeginForm("Load", "Manage"))
+    {
+        <p>
+            @Html.TextBox("OntologyUri")
+        </p>
+        <button id="submitbtn" type="submit" value="Register">
+                Translate Ontology
+        </button> 
+    }
+
     <li class="one">
         <h5>Getting Started</h5>
         ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that

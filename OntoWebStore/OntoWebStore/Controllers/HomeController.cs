@@ -2,7 +2,7 @@
 
 namespace OntoWebStore.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -11,9 +11,33 @@ namespace OntoWebStore.Controllers
             return View();
         }
 
+        class AModel : Tripple
+        {
+        }
+
+        private class TModel : Tripple
+        {
+        }
+
+        class Tripple
+        {
+            public Subject Subject { get; set; }
+        }
+
+        class Subject
+        {
+            public Predicate Predicate { get; set; } 
+        }
+
+        class Predicate
+        {
+            public object Object { get; set; }
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
+
 
             return View();
         }
