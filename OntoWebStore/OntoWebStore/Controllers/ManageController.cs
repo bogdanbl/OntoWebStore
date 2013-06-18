@@ -20,7 +20,9 @@ namespace OntoWebStore.Controllers
         [HttpPost]
         public ActionResult Load(Uri ontologyUri)
         {
-            var ontology = _rdfTranslator.LoadOntology("C:/Users/Bogdan/Desktop/wine.rdf");
+            if(ontologyUri == null || string.IsNullOrEmpty(ontologyUri.AbsolutePath))
+                ontologyUri = new Uri("http://krono.act.uji.es/Links/ontologies/wine.owl/at_download/file");
+            var ontology = _rdfTranslator.LoadOntologyFromUri(ontologyUri);
             _rdfTranslator.StoreOntology(ontology);
             return View();
         }
