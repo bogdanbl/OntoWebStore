@@ -8,3 +8,5 @@
 /OntoWebStore/OntoWebStore/bin
 /OntoWebStore/OntoWebStore/bin
 /OntoWebStore/OntoWebStore/obj
+
+*.pdb
