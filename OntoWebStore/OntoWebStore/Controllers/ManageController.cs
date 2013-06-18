@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using OntoWebStore.Services;
+using VDS.RDF;
+using VDS.RDF.Ontology;
 
 namespace OntoWebStore.Controllers
 {
@@ -16,9 +20,25 @@ namespace OntoWebStore.Controllers
         [HttpPost]
         public ActionResult Load(Uri ontologyUri)
         {
-            var ontology = _rdfTranslator.LoadOntologyFromUri(ontologyUri);
+            var ontology = _rdfTranslator.LoadOntology("C:/Users/Bogdan/Desktop/wine.rdf");
+            _rdfTranslator.StoreOntology(ontology);
             return View();
         }
 
+        public List<Triple> SearchOntology(OntologyGraph ontology, string instanceToSearch)
+        {
+            List<Triple> result1;
+            var finalResult = new List<Triple>();
+            if(!(result1 = ontology.Triples.Where(tripple => tripple.Subject.ToString().Contains(instanceToSearch)).ToList()).Any())
+                return new List<Triple>();
+            
+            finalResult.AddRange(result1);
+            foreach (var triple in result1)
+            {
+                finalResult.AddRange(SearchOntology(ontology, triple.Object.ToString()));
+            }
+            
+            return finalResult;
+        }
     }
 }

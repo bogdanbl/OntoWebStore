@@ -7,5 +7,6 @@ namespace OntoWebStore.Services
     {
         OntologyGraph LoadOntology(string filePath);
         OntologyGraph LoadOntologyFromUri(Uri uri);
+        void StoreOntology(OntologyGraph ontology);
     }
 }

@@ -20,12 +20,12 @@ namespace OntoWebStore.Infrastructure
                                 .LifeStyle.Singleton);
 
             container.Register(Component.For<IRdfTranslator>()
-                                .UsingFactoryMethod(_ => new RdfTranslator())
+                                .UsingFactoryMethod(_ => new RdfTranslator(container.Resolve<IMongoDataContextProvider>()))
                                 .LifeStyle.PerWebRequest);
 
-            //container.Register(Component.For<IEmailService>()
-            //                    .UsingFactoryMethod(_ => new EmailService(container.Resolve<IDocumentSession>()))
-            //                    .LifeStyle.PerWebRequest);
+            container.Register(Component.For<IMongoDataContextProvider>()
+                                .UsingFactoryMethod(_ => new MongoDataContextProvider())
+                                .LifeStyle.PerWebRequest);
 
             //container.Register(Component.For<IFormsAuthenticationService>()
             //                    .UsingFactoryMethod(_ => new FormsAuthenticationService())
